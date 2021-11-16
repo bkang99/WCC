@@ -1,0 +1,45 @@
+
+def repeated(string):
+    factors = factory(len(string))
+    match = 0;
+    if len(factors) == 0:
+        return False
+    for i in range(len(factors)):
+        substr = sliceStr(string, factors[i])
+        substr0 = substr[0]
+        if substr.count(substr0) == len(substr):
+            match += 1
+    if match == 0:
+        return False
+    else: 
+        return True
+    
+#Returns the list of all factors of x excluding 1 and x itself. 
+def factory(x):
+    factors = []
+    for i in range(1, x):
+        if (x % i == 0):
+            factors.append(i)
+    return factors[1:]
+
+#Returns array of substring divided into each steps
+def sliceStr(string, step):
+    subArray = []
+    x = int(len(string)/step)
+    for i in range(step):
+        first = int(x*i)
+        last = int(x*(i+1))
+        subArray.append(string[first:last])
+    return subArray
+        
+
+print(repeated("a")) #false
+
+print(repeated("ababab")) #true
+
+print(repeated("aba")) #false
+
+print(repeated("abcabcabcabc")) #true
+
+print(repeated("aaxxtaaxztaaxxt")) #false
+
